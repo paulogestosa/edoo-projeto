@@ -1,0 +1,2 @@
+// Não coloquei nada, mas tudo relacionado com o professor, talvez seja interessante usar outra classe que tenha nome de classe, e nela só aceite um professor para fazer mudanças em relação a classe
+// Atualizar nota, criar prova, atribuir falta, esse tipo de coisa.
