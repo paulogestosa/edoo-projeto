@@ -1,76 +1,51 @@
 #include "ControllerStudent.h"
-#include "database.h"
-#include "iostream"
-#include "student.h"
-void StudentControllerCPP::addStudent(const Student &student)
-{
-    students.push_back(student);
-    cout << "Student" << student.getName() << "created!\n";
-}
-
-void StudentController::setAdress(int studentId, const std::string &adressName)
-{
-    for (auto &student : students)
-    {
-        if (student.getId() == studentId)
-        {
-            student.setAdress(adressName);
-            std::cout << "Address created successfully for student " << student.getName() << ".\n";
-            return;
-        }
-    }
-}
-
-void StudentControllerCPP::addAbsense(int studentId, int classId)
-{
-    for (auto &student : students)
-    {
-        if (student.getId() == studentId)
-        {
-            student.addAbsense();
-            cout << "Student" << student.getName() << "has" << Student.getAbsences() << "absences!\n";
-        }
-    }
-}
+#include <iostream>
 
 void StudentControllerCPP::listStudents()
 {
-    if (students.size() > 0)
-    {
-        for (const auto &student : students)
-        {
-            std::cout << "\nStudent Name: " << student.getName();
-        }
-    }
-    else
+    if (students.empty())
     {
         std::cout << "No Students Created Yet.\n";
         return;
     }
 }
 
-void StudentControllerCPP::updateAdress(std::string adressName, studentId)
-{
-    for (const auto &student : students)
-    {
-        if (student.getId() == studentId)
-        {
-            student.setAdress(adressName);
-            cout << "Adress updated successfully for student" << Student.getName() << "\n";
-            return;
-        }
-    }
-}
-
-void StudentControllerCPP::deleteStudent(const Student &student)
+void StudentControllerCPP::deleteStudent(int studentId)
 {
     for (auto i = students.begin(); i != students.end(); ++i)
     {
-        if (i->getId() == student.getId())
+        if (*i == studentId)
         {
             students.erase(i);
-            std::cout << "Student" << student.getId() << " not in project anymore.\n";
+            std::cout << "Student with ID " << studentId << " removed successfully.\n";
             return;
         }
     }
+    std::cout << "Student with ID " << studentId << " not found.\n";
+}
+
+void StudentControllerCPP::verifyStudentId(int studentId)
+{
+    for (int id : students)
+    {
+        if (id == studentId)
+        {
+            std::cout << "Student with ID " << studentId << " exists.\n";
+            return;
+        }
+    }
+    std::cout << "Student with ID " << studentId << " does not exist.\n";
+}
+
+void StudentControllerCPP::updateAdress(const std::string &adressName, int studentId)
+{
+    for (int id : students)
+    {
+        if (id == studentId)
+        {
+            std::cout << "Address  should be updated to: " << adressName << "\n";
+            return;
+        }
+    }
+    std::cout << "Student with ID " << studentId << " not found.\n";
 }
