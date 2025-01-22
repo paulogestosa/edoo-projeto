@@ -6,7 +6,7 @@
         "${workspaceFolder}/src/models",
         "${workspaceFolder}/src/controllers",
         "${workspaceFolder}/src/database"
-        // "${workspaceFolder}/include"
+        // "${workspaceFolder}/include",
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",

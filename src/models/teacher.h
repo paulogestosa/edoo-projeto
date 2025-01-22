@@ -3,22 +3,18 @@
 
 #include <string>
 #include <vector>
+#include "Person.h"
 
-class Teacher {
+class Teacher : public Person
+{
 private:
-    int id;
-    std::string name;
-    std::vector<int> classes; // Lista de IDs de classes que o professor gerencia
+    std::vector<int> classes;
 
 public:
-    Teacher(int id, const std::string& name);
+    Teacher(const std::string &name, const std::string &id, const std::string &email);
 
-    // Getters
-    int getId() const;
-    const std::string& getName() const;
-    const std::vector<int>& getClasses() const;
+    const std::vector<int> &getClasses() const;
 
-    // Setters
     void addClass(int classId);
 };
 

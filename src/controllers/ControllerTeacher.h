@@ -14,6 +14,7 @@ public:
     void listClasses() const;
     void addClass(int classId);
     void addGrade ( int classId, int studentId);
+    // questão das faltas a ser vista
 };
 
 #endif

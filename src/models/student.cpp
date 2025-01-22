@@ -1,37 +1,25 @@
 #include "Student.h"
 
-Student::Student(int id, const std::string &name, const std::string &adressName) : id(id), name(name), absences(0) adressName(adressName) {}
+// Construtor
+Student::Student(const std::string &id, const std::string &name, const std::string &email, const std::string &addressName)
+    : Person(name, id, email), addressName(addressName) {}
 
-int Student::getId() const
-{
-    return id;
-}
-
-std::string Student::getName() const
-{
-    return name;
-}
-
-int Student::getAbsences() const
-{
-    return absences;
-}
-
-void Student::addAbsence()
-{
-    absences++;
-}
-
-// void Student::addAdress()
-// {
-//     return adressName;
+// // Getter para faltas
+// int Student::getAbsences() const {
+//     return absences;
 // }
-std::string Student::getAdress() const
-{
-    return adressName;
+
+// Getter para o endereço
+std::string Student::getAddressName() const {
+    return addressName;
 }
 
-void Student::setAdress(const std::string &newAdress)
-{
-    adressName = newAdress;
+// // Incrementa faltas
+// void Student::addAbsence() {
+//     absences++;
+// }
+
+// Atualiza o endereço
+void Student::setAddressName(const std::string &newAddress) {
+    addressName = newAddress;
 }
