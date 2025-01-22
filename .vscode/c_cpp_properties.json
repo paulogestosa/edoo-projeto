@@ -3,10 +3,8 @@
     {
       "name": "linux-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/src/models",
-        "${workspaceFolder}/src/controllers",
-        "${workspaceFolder}/src/database"
-        // "${workspaceFolder}/include",
+
+        "${workspaceFolder}/**"
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",
