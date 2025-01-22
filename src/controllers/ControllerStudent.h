@@ -10,15 +10,20 @@
 class StudentController
 {
 private:
-    std::vector<Student> students;
+    std::vector<int> students;
 
 public:
     void addStudent(const Student &student);
-    void addAbsence(int studentId, int classId);
+    void addAbsence(int studentId, int classId); // APAGAR
     void listStudents() const;
-    void setAdress(int studentId, const std::string &adressName) void updateAdress(std::string adressName, studentId);
+    void setAdress(int studentId, const std::string &adressName) void updateAdress(std::string adressName, studentId); // APAGAR 
     void deleteStudent(const Student &student); // sair do terminal?
     // A ideia é usar os modelos das classes como objetos que vamos trabalhar sobre eles aqui
+
+    // funções a implementar
+    // verifyStudentId 
+    // UpdateStudentInfo
+    
 };
 
 #endif

@@ -9,12 +9,14 @@ private:
     std::string addressName;
 
 public:
-    Student(int id, const std::string &name, const std::string adressName);
+    Student(int id, const std::string &name, const std::string &email, const std::string &addressName);
    
-    
+    //getters
+    std::string getAddressName() const;
+
     // setters
-    std::string setAdress();
-    void updateAdress();
+    void setAddressName(const std::string &address);
+    void updateAdressName(const std::string &newAddres);
 };
 
 #endif

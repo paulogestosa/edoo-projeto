@@ -6,16 +6,16 @@
 class Person {
 private:
     std::string name;
-    std::string id;
+    int id;
     std::string email;
 
 public:
     // Construtor
-    Person(const std::string &name, const std::string &id, const std::string &email);
+    Person(const std::string &name, int id, const std::string &email);
 
     // Getters
     std::string getName() const;
-    std::string getId() const;
+    int getId() const;
     std::string getEmail() const;
 
     // Setters

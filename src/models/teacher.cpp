@@ -1,6 +1,6 @@
 #include "Teacher.h"
 
-Teacher::Teacher(const std::string &name, const std::string &id, const std::string &email)
+Teacher::Teacher(const std::string &name, int id, const std::string &email)
     : Person(name, id, email) {}
 
 const std::vector<int> &Teacher::getClasses() const

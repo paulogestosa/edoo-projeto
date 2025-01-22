@@ -1,7 +1,7 @@
 #include "Student.h"
 
 // Construtor
-Student::Student(const std::string &id, const std::string &name, const std::string &email, const std::string &addressName)
+Student::Student(int id, const std::string &name, const std::string &email, const std::string &addressName)
     : Person(name, id, email), addressName(addressName) {}
 
 // // Getter para faltas
@@ -20,6 +20,10 @@ std::string Student::getAddressName() const {
 // }
 
 // Atualiza o endereço
-void Student::setAddressName(const std::string &newAddress) {
+void Student::setAddressName(const std::string &address) {
+    addressName = address;
+}
+
+void Student::updateAdressName(const std::string &newAddress) {
     addressName = newAddress;
 }
