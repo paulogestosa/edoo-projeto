@@ -5,16 +5,18 @@
 #include "src/models/Teacher.h"
 #include "src/models/Class.h"
 
-class TeacherController {
+class TeacherController
+{
 private:
     std::vector<int> classes;
+
 public:
-    void addExam(const Classes& class);
-    void chooseClass(int classId);
-    void listClasses() const;
-    void addClass(int classId);
-    void addGrade ( int classId, int studentId);
-    // questão das faltas a ser vista
+    // void chooseClass(int classId);
+    void showClasses(const std::vector<int> classes) const; // como isso será feito?
+    void addTeacher();
+    void removeTeacher(int teacherId);
+    void changeTeacherInfo(int teacherId);
+    void verifyTeacherId(int teacherId);
 };
 
 #endif

@@ -14,7 +14,7 @@ public:
     void listStudents();
     void deleteStudent(int studentId);
     void verifyStudentId(int studentId);
-    void updateAdress(const std::string &adressName, int studentId);
+    void updateAdress( int studentId);
 };
 
 #endif

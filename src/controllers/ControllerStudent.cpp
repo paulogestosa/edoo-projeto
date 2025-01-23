@@ -37,7 +37,7 @@ void StudentControllerCPP::verifyStudentId(int studentId)
     std::cout << "Student with ID " << studentId << " does not exist.\n";
 }
 
-void StudentControllerCPP::updateAdress(const std::string &adressName, int studentId)
+void StudentControllerCPP::updateAdress( int studentId)
 {
     for (int id : students)
     {
