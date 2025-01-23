@@ -15,6 +15,7 @@ class ControllerClass {
 
         void addClass(const std::string &name);
         void addStudentToClass(int classId, int studentId);
+        // removeStudentOfClass
         void assignTeacher(int classId, int teacherId);
         void addTest(int classId, std::string &testName);
         void setStudentGrade(int classId, int studentId, int grade);
@@ -24,6 +25,11 @@ class ControllerClass {
         void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);
 
         void getClassbyId(int id);
+        
+        // Falta todos os getters
+        // Show Classes notes 
+        // Show Classes absences
+        // Show Classes students
 
 };
 
