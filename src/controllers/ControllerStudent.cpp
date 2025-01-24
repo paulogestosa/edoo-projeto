@@ -24,17 +24,18 @@ void StudentControllerCPP::deleteStudent(int studentId)
     std::cout << "Student with ID " << studentId << " not found.\n";
 }
 
-void StudentControllerCPP::verifyStudentId(int studentId)
+bool StudentControllerCPP::verifyStudentId(int studentId)
 {
     for (int id : students)
     {
         if (id == studentId)
         {
             std::cout << "Student with ID " << studentId << " exists.\n";
-            return;
+            return true;
         }
     }
     std::cout << "Student with ID " << studentId << " does not exist.\n";
+    return false;
 }
 
 void StudentControllerCPP::updateAdress( int studentId)
@@ -43,7 +44,7 @@ void StudentControllerCPP::updateAdress( int studentId)
     {
         if (id == studentId)
         {
-            std::cout << "Address  should be updated to: " << adressName << "\n";
+            std::cout << "Address  should be updated to: " << students[studentId].getAddressName() << "\n";
             return;
         }
     }

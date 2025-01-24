@@ -16,7 +16,7 @@ public:
     void addTeacher();
     void removeTeacher(int teacherId);
     void changeTeacherInfo(int teacherId);
-    void verifyTeacherId(int teacherId); // bool e não void
+    bool verifyTeacherId(int teacherId); // bool e não void
 };
 
 #endif

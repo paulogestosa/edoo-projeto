@@ -103,16 +103,17 @@ void TeacherControllerCPP::changeTeacherInfo(int teacherId)
     }
 }
 
-void TeacherControllerCPP::verifyTeacherId(int teacherId)
+bool TeacherControllerCPP::verifyTeacherId(int teacherId)
 {
     for (int id : teacher)
     {
         if (id == teacherId)
         {
             std::cout << "Teacher with ID " << teacherId << " exists.\n";
-            return;
+            return true;
         }
     }
 
     std::cout << "Teacher with ID " << teacherId << " does not exist.\n";
+    return false;
 }

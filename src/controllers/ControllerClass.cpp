@@ -1,6 +1,4 @@
 #include "ControllerClass.h"
-#include "ControllerStudent.h"
-#include "ControllerTeacher.h"
 
 // Adiciona uma nova classe
 void ControllerClass::addClass(const std::string &name) {
@@ -29,7 +27,7 @@ void ControllerClass::addStudentToClass(int classId, int studentId) {
     }
 
     // Adiciona o estudante à classe
-    classes[classId].enrollStudent(student);
+    classes[classId].enrollStudent(studentId);
 
     std::cout << "Estudante com ID " << studentId << " adicionado à classe com ID " << classId << ".\n";
 

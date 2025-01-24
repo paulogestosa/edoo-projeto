@@ -4,6 +4,7 @@
 #include <iostream>
 #include "src/models/Class.h"
 #include "ControllerStudent.h"
+#include "ControllerTeacher.h"
 
 class ControllerClass {
 
@@ -24,7 +25,7 @@ class ControllerClass {
         void atributeStudentAbssences(int classId, int studentId, int numAbssences);
         void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);
 
-        void getClassbyId(int id);
+        void getClassbyId(int id); // boll e não void
         
         // Falta todos os getters
         // Show Classes notes 

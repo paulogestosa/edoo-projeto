@@ -12,11 +12,11 @@ std::string Class::getName() const {
     return name;
 }
 
-const std::vector<Student>& Class::getEnrolledStudents() const {
+const std::vector<int>& Class::getEnrolledStudents() const {
     return enrolledStudents;
 }
 
-const Teacher& Class::getEnrolledTeacher() const {
+int Class::getEnrolledTeacher() const {
     return enrolledTeacher;
 }
 
@@ -39,12 +39,12 @@ void Class::setName(const std::string &newName) {
     name = newName;
 }
 
-void Class::enrollStudent(const Student &student) {
-    enrolledStudents.push_back(student);
+void Class::enrollStudent(int studentId) {
+    enrolledStudents.push_back(studentId);
 }
 
-void Class::setEnrolledTeacher(const Teacher &teacher) {
-    enrolledTeacher = teacher;
+void Class::setEnrolledTeacher(int teacherId) {
+    enrolledTeacher = teacherId;
 }
 
 void Class::setGradeByStudent(int studentId, int grade) {
