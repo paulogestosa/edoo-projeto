@@ -20,7 +20,7 @@ public:
 
     // Setters
     void setName(const std::string &newName);
-    void setId(const std::string &newId);
+    void setId(int id);
     void setEmail(const std::string &newEmail);
 };
 

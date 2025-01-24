@@ -24,7 +24,9 @@ void StudentControllerCPP::deleteStudent(int studentId)
     std::cout << "Student with ID " << studentId << " not found.\n";
 }
 
-bool StudentControllerCPP::verifyStudentId(int studentId)
+bool StudentControllerCPP::verifyStudentId(int studentId) // fica melhor se usar o map de students para verificar a existência de um estudante com esse Id
+                                                          // if (students.find(studentId) == students.end()) -> False se existe, True se não existe
+                                                          // O mesmo se aplica ao Teacher, tem o map lá exatamente para isso, facilitar toda a organização dos dados
 {
     for (int id : students)
     {

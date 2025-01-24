@@ -22,7 +22,7 @@ void Person::setName(const std::string &newName) {
     name = newName;
 }
 
-void Person::setId(const std::string &newId) {
+void Person::setId(int newId) {
     id = newId;
 }
 

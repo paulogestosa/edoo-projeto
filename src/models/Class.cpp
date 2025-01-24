@@ -22,7 +22,7 @@ int Class::getEnrolledTeacher() const {
 
 int Class::getGradeByStudent(int studentId) const {
     if (gradeByStudents.find(studentId) != gradeByStudents.end()) {
-        return gradeByStudents.at(studentId);
+        return gradeByStudents[studentId];
     }
     return -1; 
 }

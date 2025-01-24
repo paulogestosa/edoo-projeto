@@ -10,6 +10,6 @@ std::string Student::getAddressName() const {
 }
 
 
-void Student::updateAdressName(const std::string &newAddress) {
+void Student::updateAddressName(const std::string &newAddress) {
     addressName = newAddress;
 }

@@ -5,7 +5,7 @@
 #include "teacher.h"
 #include "Class.h"
 
-void TeacherControllerCPP::showClasses(const std::vector<int> classes)
+void TeacherControllerCPP::showClasses(const std::vector<int> classes) // Deve pertencer ao class, fica até mais fácil de implementar
 {
     for (int id : classes)
     {
