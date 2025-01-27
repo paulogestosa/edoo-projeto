@@ -34,6 +34,28 @@ void ControllerClass::addStudentToClass(int classId, int studentId) {
     // TODO: Atualizar no banco de dados
 }
 
+
+// Remove um estudante de uma classe
+void ControllerClass::removeStudentOfClass(int  classId, int studentId) {
+
+    // Verifica se a classe existe
+    if (classes.find(classId) == classes.end()) {
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+        return;
+    }
+
+    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
+    StudentControllerCPP studentController;
+    if (!studentController.verifyStudentId(studentId)) {
+        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+        return;
+    }
+
+    //Exclui o estudante da classe
+    classes[classId].removeStudent(studentId);
+
+}
+
 // Atribui um professor a uma classe
 void ControllerClass::assignTeacher(int classId, int teacherId) {
 

@@ -34,6 +34,7 @@ class Class {
         // Setters
         void setName(const std::string &newName);
         void enrollStudent(int studentId);
+        void removeStudent(int studentId);
         void setEnrolledTeacher(int TeacherId);
         void setGradeByStudent(int studentId, int grade);
         void setAbsencesByStudent(int studentId, int absences);

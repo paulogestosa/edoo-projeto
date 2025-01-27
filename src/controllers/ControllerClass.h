@@ -16,9 +16,9 @@ class ControllerClass {
 
         void addClass(const std::string &name);
         void addStudentToClass(int classId, int studentId);
-        // removeStudentOfClass
+        void removeStudentOfClass(int classId, int studentId);
         void assignTeacher(int classId, int teacherId);
-        void addTest(int classId, std::string &testName);
+        void addTest(int classId, const std::string &testName);
         void setStudentGrade(int classId, int studentId, int grade);
         void updateStudentGrade(int classId, int studentId, int newGrade);
         void removeStudentGrade(int classId, int studentId);

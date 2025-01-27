@@ -43,6 +43,11 @@ void Class::enrollStudent(int studentId) {
     enrolledStudents.push_back(studentId);
 }
 
+void Class::removeStudent(int studentId) {
+    enrolledStudents.erase(std::remove(numbers.begin(), numbers.end(), studentId), numbers.end());
+}
+
+
 void Class::setEnrolledTeacher(int teacherId) {
     enrolledTeacher = teacherId;
 }
