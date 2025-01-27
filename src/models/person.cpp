@@ -1,7 +1,7 @@
 #include "Person.h"
 
 // Construtor
-Person::Person(const std::string &name, const std::string &id, const std::string &email)
+Person::Person(const std::string &name, int id, const std::string &email)
     : name(name), id(id), email(email) {}
 
 // Getters
@@ -9,7 +9,7 @@ std::string Person::getName() const {
     return name;
 }
 
-std::string Person::getId() const {
+int Person::getId() const {
     return id;
 }
 
@@ -22,7 +22,7 @@ void Person::setName(const std::string &newName) {
     name = newName;
 }
 
-void Person::setId(const std::string &newId) {
+void Person::setId(int newId) {
     id = newId;
 }
 

@@ -11,7 +11,7 @@ private:
     std::vector<int> classes;
 
 public:
-    Teacher(const std::string &name, const std::string &id, const std::string &email);
+    Teacher(const std::string &name, int id, const std::string &email);
 
     const std::vector<int> &getClasses() const;
 
