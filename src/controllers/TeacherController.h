@@ -4,14 +4,17 @@
 #include <vector>
 #include "src/models/Teacher.h"
 #include "src/models/Class.h"
-
+#include "database.h"
 class TeacherController
 {
 private:
     std::vector<int> classes;
+    sqlite3 *db; // Conexão com db
 
 public:
-    void showClasses(const std::vector<int> classes) const; 
+    TeacherController(sqlite3 *database) : db(database) {}
+    ~TeacherController() {}
+    void showClasses(const std::vector<int> classes) const;
     void addTeacher(int teacherId, Teacher teacherToAdd);
     void removeTeacher(int teacherId);
     void changeTeacherInfo(int teacherId);

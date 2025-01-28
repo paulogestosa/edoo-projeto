@@ -5,26 +5,29 @@
 #include "src/models/Class.h"
 #include "ControllerStudent.h"
 #include "ControllerTeacher.h"
-#include "sqlite3.h"
+#include "database.h"
 class ControllerClass
 {
 
 private:
+    sqlite3 *db;                  // conexão com o banco
     std::map<int, Class> classes; // Armazena as aulas pelo ID
 
 public:
-    void addClass(sqlite3 *db, const std::string &name);
-    void addStudentToClass(sqlite3 *db, int classId, int studentId);
-    void removeStudentOfClass(sqlite3 *db, int classId, int studentId);
-    void assignTeacher(sqlite3 *db, int classId, int teacherId);
-    void addTest(sqlite3 *db, int classId, const std::string &testName);
-    void setStudentGrade(sqlite3 *db, int classId, int studentId, int grade);
-    void updateStudentGrade(sqlite3 *db, int classId, int studentId, int newGrade);
-    void removeStudentGrade(sqlite3 *db, int classId, int studentId);
-    void atributeStudentAbssences(sqlite3 *db, int classId, int studentId, int numAbssences);
-    void removeStudentAbssences(sqlite3 *db, int classId, int studentId, int numAbssencesToRemove);
+    ControllerClass(sqlite3 *database) : db(database) {}
+    ~ControllerClass() {}
+    void addClass(const std::string &name);
+    void addStudentToClass(int classId, int studentId);
+    void removeStudentOfClass(int classId, int studentId);
+    void assignTeacher(int classId, int teacherId);
+    void addTest(int classId, const std::string &testName);
+    void setStudentGrade(int classId, int studentId, int grade);
+    void updateStudentGrade(int classId, int studentId, int newGrade);
+    void removeStudentGrade(int classId, int studentId);
+    void atributeStudentAbssences(int classId, int studentId, int numAbssences);
+    void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);
 
-    void getClassbyId(sqlite3 *db, int id); // boll e não void
+    void getClassbyId(int id); // boll e não void
 
     // Falta todos os getters
     // Show Classes notes

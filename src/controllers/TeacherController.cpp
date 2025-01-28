@@ -1,17 +1,14 @@
-
-#include "ControllerTeacher.h"
+#include "TeacherController.h"
 #include "database.h"
-#include "iostream"
-#include "teacher.h"
-#include "Class.h"
+#include <iostream>
 
-void TeacherControllerCPP::showClasses(const std::vector<int> classes) // Deve pertencer ao class, fica até mais fácil de implementar
+void TeacherController::showClasses(const std::vector<int> classes) const
 {
     for (int id : classes)
     {
         const Class *foundClass = nullptr;
 
-        for (const auto &c : classes) // ns se isso ta cerrto mas pensei em iterar sobre as classes do vetor classes
+        for (const auto &c : classes)
         {
             if (c.getId() == id)
             {
@@ -32,88 +29,81 @@ void TeacherControllerCPP::showClasses(const std::vector<int> classes) // Deve p
     }
 }
 
-void TeacherControllerCPP::addTeacher()
+void TeacherController::addTeacher(int teacherId, Teacher teacherToAdd)
+{
+    // Inserindo professor no banco de dados
+    std::string query = "INSERT INTO teachers (id, name, email) VALUES (" +
+                        std::to_string(teacherId) + ", '" + teacherToAdd.getName() + "', '" + teacherToAdd.getEmail() + "');";
+
+    char *errMsg = nullptr;
+    if (sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK)
+    {
+        std::cout << "Teacher '" << teacherToAdd.getName() << "' added to database successfully.\n";
+    }
+    else
+    {
+        std::cerr << "Error adding teacher to database: " << errMsg << '\n';
+        sqlite3_free(errMsg);
+    }
+}
+
+void TeacherController::removeTeacher(int teacherId)
+{
+    std::string query = "DELETE FROM teachers WHERE id = " + std::to_string(teacherId) + ";";
+
+    char *errMsg = nullptr;
+    if (sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK)
+    {
+        std::cout << "Teacher with ID " << teacherId << " removed from database successfully.\n";
+    }
+    else
+    {
+        std::cerr << "Error removing teacher from database: " << errMsg << '\n';
+        sqlite3_free(errMsg);
+    }
+}
+
+void TeacherController::changeTeacherInfo(int teacherId)
 {
     std::string name, email;
-    int id;
-
-    std::cout << "ProfessorName: ";
+    std::cout << "Update teacherName: ";
     std::cin >> name;
 
-    std::cout << "ProfessorId: ";
-    std::cin >> id;
-
-    std::cout << "ProfessorMail: ";
+    std::cout << "Update teacherEmail: ";
     std::cin >> email;
 
-    Teacher newTeacher(name, id, email);
-    teacher.push_back(newTeacher.getId());
+    std::string query = "UPDATE teachers SET name = '" + name + "', email = '" + email + "' WHERE id = " + std::to_string(teacherId) + ";";
 
-    std::cout << "Teacher " << name << " added to the list!" << std::endl;
-}
-
-void TeacherControllerCPP::removeTeacher(int teacherId)
-{
-    bool found = false;
-
-    for (size_t i = 0; i < teacher.size(); ++i)
+    char *errMsg = nullptr;
+    if (sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK)
     {
-        if (teacher[i] == teacherId)
-        {
-            teacher.erase(teacher.begin() + i);
-            std::cout << "Teacher  " << teacherId << " has been removed!" << std::endl;
-            found = true;
-            break;
-        }
+        std::cout << "Teacher with ID " << teacherId << " updated successfully.\n";
     }
-
-    if (!found)
+    else
     {
-        std::cout << "Teacher " << teacherId << " does not exist" << std::endl;
-    }
-}
-void TeacherControllerCPP::changeTeacherInfo(int teacherId)
-{
-    bool found = false;
-
-    for (size_t i = 0; i < teacher.size(); ++i)
-    {
-        if (teacher[i] == teacherId)
-        {
-            std::string name, email;
-
-            std::cout << "Update teacherName: ";
-            std::cin >> name;
-
-            std::cout << "Update teacherEmail: ";
-            std::cin >> email;
-
-            Teacher updatedTeacher(name, teacherId, email);
-            teacher[i] = updatedTeacher.getId();
-
-            std::cout << "All information updated." << std::endl;
-            found = true;
-            break;
-        }
-    }
-
-    if (!found)
-    {
-        std::cout << "Teacher with ID " << teacherId << " not found!" << std::endl;
+        std::cerr << "Error updating teacher in database: " << errMsg << '\n';
+        sqlite3_free(errMsg);
     }
 }
 
-bool TeacherControllerCPP::verifyTeacherId(int teacherId)
+bool TeacherController::verifyTeacherId(int teacherId)
 {
-    for (int id : teacher)
+    std::string query = "SELECT 1 FROM teachers WHERE id = " + std::to_string(teacherId) + ";";
+
+    char *errMsg = nullptr;
+    bool exists = false;
+
+    auto callback = [](void *data, int argc, char **argv, char **colNames) -> int
     {
-        if (id == teacherId)
-        {
-            std::cout << "Teacher with ID " << teacherId << " exists.\n";
-            return true;
-        }
+        *static_cast<bool *>(data) = true;
+        return 0;
+    };
+
+    if (sqlite3_exec(db, query.c_str(), callback, &exists, &errMsg) != SQLITE_OK)
+    {
+        std::cerr << "Error verifying teacher ID in database: " << errMsg << '\n';
+        sqlite3_free(errMsg);
     }
 
-    std::cout << "Teacher with ID " << teacherId << " does not exist.\n";
-    return false;
+    return exists;
 }
