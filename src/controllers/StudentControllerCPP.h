@@ -15,7 +15,7 @@ public:
     void listStudents();
     void deleteStudent(int studentId);
     bool verifyStudentId(int studentId);
-    Student returnStudent(int studentId);
+    Student* returnStudent(int studentId);
 };
 
 #endif
