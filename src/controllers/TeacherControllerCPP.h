@@ -5,7 +5,7 @@
 #include "src/models/Teacher.h"
 #include "src/models/Class.h"
 
-class TeacherController
+class TeacherControllerCPP
 {
 private:
     std::vector<int> classes;

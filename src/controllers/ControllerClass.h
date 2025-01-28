@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include "src/models/Class.h"
-#include "ControllerStudent.h"
-#include "ControllerTeacher.h"
+#include "src/controllers/StudentControllerCPP.h"
+#include "src/controllers/TeacherControllerCPP.h"
 
 class ControllerClass {
 
@@ -12,8 +12,18 @@ class ControllerClass {
 
         std::map<int, Class> classes;  // Armazena as aulas pelo ID
 
+        // úteis para checkagem de existência de objetos com Id's específicos
+        bool checkClass(int classId);
+        bool checkStudent(int studentId);
+        bool checkTeacher(int teacherId);
+
     public:
 
+        //instâncias das classes de controles para manejar dados
+        StudentControllerCPP studentController;
+        TeacherControllerCPP teacherController;
+
+        // Lógica do sistema
         void addClass(const std::string &name);
         void addStudentToClass(int classId, int studentId);
         void removeStudentOfClass(int classId, int studentId);
@@ -24,13 +34,13 @@ class ControllerClass {
         void removeStudentGrade(int classId, int studentId);
         void atributeStudentAbssences(int classId, int studentId, int numAbssences);
         void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);
-
-        void getClassbyId(int id); // boll e não void
         
-        // Falta todos os getters
-        // Show Classes notes 
-        // Show Classes absences
-        // Show Classes students
+        // Getters para UI
+        void showClassAbsences(int classId);
+        void showStudentAbsences(int classId, int studentId);
+        void showClassGrades(int classId);
+        void showStudentGrade(int classId, int studentId);
+        const std::vector<int> showStudentClasses(int studentId);
 
 };
 
