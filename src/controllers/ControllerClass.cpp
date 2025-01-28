@@ -59,8 +59,8 @@ void ControllerClass::addStudentToClass(int classId, int studentId) {
     classes[classId].enrollStudent(studentId);
 
     // Adiciona a classe dentro da aba do estudante
-    Student studentObj = studentController.returnStudent(studentId);
-    studentObj.updateClassesJoined(classId);
+    Student* studentObj = studentController.returnStudent(studentId);
+    studentObj->updateClassesJoined(classId);
 
     std::cout << "Estudante com ID " << studentId << " adicionado à classe com ID " << classId << ".\n";
 
@@ -265,7 +265,7 @@ void ControllerClass::showStudentGrade(int classId, int studentId) {
 
 const std::vector<int> ControllerClass::showStudentClasses(int studentId) {
     
-    Student studentObj = studentController.returnStudent(studentId);
+    Student* studentObj = studentController.returnStudent(studentId);
 
-    return studentObj.getClassesJoined();
+    return studentObj->getClassesJoined();
 }

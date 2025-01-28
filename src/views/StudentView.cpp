@@ -55,12 +55,12 @@ void StudentView::singleStudentView() {
         }
 
         // Exibe as informações básicas do aluno
-        Student student = controller.studentController.returnStudent(studentId);
+        Student* student = controller.studentController.returnStudent(studentId);
         std::cout << "\nInformações do Aluno:\n";
-        std::cout << "ID: " << student.getId() << "\n";
-        std::cout << "Nome: " << student.getName() << "\n";
-        std::cout << "Email: " << student.getEmail() << "\n";
-        std::cout << "Endereço: " << student.getAddressName() << "\n";
+        std::cout << "ID: " << student->getId() << "\n";
+        std::cout << "Nome: " << student->getName() << "\n";
+        std::cout << "Email: " << student->getEmail() << "\n";
+        std::cout << "Endereço: " << student->getAddressName() << "\n";
 
         // Perguntar se o usuário deseja ver informações adicionais (notas, faltas etc.)
         while (true) {
