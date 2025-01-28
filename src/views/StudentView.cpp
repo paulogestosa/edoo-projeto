@@ -48,14 +48,14 @@ void StudentView::singleStudentView() {
         std::cin >> studentId;
 
         // Verifica se o ID do aluno é válido
-        if (!controller.studentController.verifyStudentId(studentId)) {
+        if (!controllerView.controller.studentController.verifyStudentId(studentId)) {
             
             std::cout << "Aluno com ID " << studentId << " não encontrado.\n";
             return; // Retorna ao menu principal
         }
 
         // Exibe as informações básicas do aluno
-        Student* student = controller.studentController.returnStudent(studentId);
+        Student* student = controllerView.controller.studentController.returnStudent(studentId);
         std::cout << "\nInformações do Aluno:\n";
         std::cout << "ID: " << student->getId() << "\n";
         std::cout << "Nome: " << student->getName() << "\n";
@@ -79,10 +79,10 @@ void StudentView::singleStudentView() {
                 case 1: {
 
                     std::cout << "\nNotas do aluno:\n";
-                    std::vector<int> studentClasses = controller.showStudentClasses(studentId);
+                    std::vector<int> studentClasses = controllerView.controller.showStudentClasses(studentId);
 
                     for (int classe : studentClasses) {
-                        controller.showStudentGrade(classe, studentId);
+                        controllerView.controller.showStudentGrade(classe, studentId);
                     }
 
                     break;
@@ -90,10 +90,10 @@ void StudentView::singleStudentView() {
                 case 2: {
 
                     std::cout << "\nFaltas do aluno:\n";
-                    std::vector<int> studentClasses = controller.showStudentClasses(studentId);
+                    std::vector<int> studentClasses = controllerView.controller.showStudentClasses(studentId);
 
                     for (int classe : studentClasses) {
-                        controller.showStudentAbsences(classe, studentId) // Certifique-se de ter esse método implementado
+                        controllerView.controller.showStudentAbsences(classe, studentId) // Certifique-se de ter esse método implementado
                     }
 
                     break;
@@ -128,7 +128,7 @@ void StudentView::addStudent() {
     std::getline(std::cin, address);
 
     // Cria o estudante e adiciona ao "banco de dados"
-    controller.studentController.addStudent(currentId, name, email, address);
+    controllerView.controller.studentController.addStudent(currentId, name, email, address);
 
     std::cout << "Estudante adicionado com sucesso! ID do estudante: " << currentId << "\n";
     currentId++;
@@ -141,7 +141,7 @@ void StudentView::deleteStudent() {
     int studentId;
     std::cin >> studentId;
 
-    if (controller.studentController.deleteStudent(studentId)) {
+    if (controllerView.controller.studentController.deleteStudent(studentId)) {
         std::cout << "Estudante com ID " << studentId << " foi removido com sucesso.\n";
     } else {
         std::cout << "Aluno com ID " << studentId << " não encontrado.\n";
@@ -151,5 +151,5 @@ void StudentView::deleteStudent() {
 // Visualizar todos os estudantes registrados
 void StudentView::seeStudents() {
 
-    controller.studentController.listStudents();
+    controllerView.controller.studentController.listStudents();
 }

@@ -8,9 +8,24 @@
 class TeacherControllerCPP
 {
 private:
+
+    // Construtor privado para evitar criação direta de instâncias
+    TeacherControllerCPP() {};
+
+    // Evita cópia ou atribuição
+    TeacherControllerCPP(const TeacherControllerCPP&) = delete;
+    TeacherControllerCPP& operator=(const TeacherControllerCPP&) = delete;
+
+    // map<id,Student>
     std::vector<int> classes;
 
 public:
+
+    // Método estático para acessar uma única instância
+    static TeacherControllerCPP& getInstance() {
+        static TeacherControllerCPP instance; // Instância única criada
+        return instance;
+    }
     void showClasses(const std::vector<int> classes) const; 
     void addTeacher(int teacherId, Teacher teacherToAdd);
     void removeTeacher(int teacherId);

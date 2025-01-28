@@ -1,9 +1,8 @@
-
 #include "ControllerTeacher.h"
 #include "database.h"
 #include "iostream"
 #include "teacher.h"
-#include "Class.h"
+
 
 void TeacherControllerCPP::showClasses(const std::vector<int> classes) // Deve pertencer ao class, fica até mais fácil de implementar
 {

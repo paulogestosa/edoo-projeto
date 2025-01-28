@@ -5,12 +5,29 @@
 #include <string>
 #include "src/models/student.h"
 
-class StudentControllerCPP
+// Classe com padrão Singleton
+class StudentControllerCPP 
 {
 private:
-    std::map<int, Student> students; // Precisa ser mapeado para o objeto da classe
+
+    // Construtor privado para evitar criação direta de instâncias
+    StudentControllerCPP() {};
+
+    // Evita cópia ou atribuição
+    StudentControllerCPP(const StudentControllerCPP&) = delete;
+    StudentControllerCPP& operator=(const StudentControllerCPP&) = delete;
+
+    // map<id,Student>
+    std::map<int, Student> students;
 
 public:
+
+    // Método estático para acessar uma única instância
+    static StudentControllerCPP& getInstance() {
+        static StudentControllerCPP instance; // Instância única criada
+        return instance;
+    }
+
     void addStudent(int studentId, const std::string &name, const std::string &email, const std::string &address);
     void listStudents();
     void deleteStudent(int studentId);

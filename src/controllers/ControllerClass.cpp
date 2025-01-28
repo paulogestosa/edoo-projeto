@@ -1,5 +1,6 @@
 #include "ControllerClass.h"
- 
+
+// Confere se a classe está dentro do banco de dados
 bool ControllerClass::checkClass(int classId) {
 
     if (classes.find(classId) == classes.end()) {
@@ -11,6 +12,7 @@ bool ControllerClass::checkClass(int classId) {
     return true;
 }
 
+// Confere se o estudante está dentro do banco de dados
 bool ControllerClass::checkStudent(int studentId) {
 
     if (!studentController.verifyStudentId(studentId)) {
@@ -22,6 +24,7 @@ bool ControllerClass::checkStudent(int studentId) {
     return true;
 }
 
+// Confere se o estudante está dentro do banco de dados
 bool ControllerClass::checkTeacher(int teacherId) {
 
     if (!teacherController.verifyTeacherId(teacherId)) {

@@ -58,4 +58,3 @@ Student* StudentControllerCPP::returnStudent(int studentId) {
 
     return nullptr; // Indica que o estudante não foi encontrado
 }
-

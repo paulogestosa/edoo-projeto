@@ -6,11 +6,20 @@
 #include "src/controllers/StudentControllerCPP.h"
 #include "src/controllers/TeacherControllerCPP.h"
 
+// Classe com padrão Singleton
 class ControllerClass {
 
     private:
 
-        std::map<int, Class> classes;  // Armazena as aulas pelo ID
+        // Construtor privado para evitar criação direta de instâncias
+        ControllerClass() {};
+
+        // Evita cópia ou atribuição
+        ControllerClass(const ControllerClass&) = delete;
+        ControllerClass& operator=(const ControllerClass&) = delete;
+
+        // map<id,Classe>
+        std::map<int, Class> classes;
 
         // úteis para checkagem de existência de objetos com Id's específicos
         bool checkClass(int classId);
@@ -19,9 +28,16 @@ class ControllerClass {
 
     public:
 
+        // Método estático para acessar uma única instância
+        static ControllerClass& getInstance() {
+            static ControllerClass instance; // Instância única criada
+            return instance;
+        }
+
         //instâncias das classes de controles para manejar dados
-        StudentControllerCPP studentController;
-        TeacherControllerCPP teacherController;
+        StudentControllerCPP& studentController = StudentControllerCPP::getInstance();
+        TeacherControllerCPP& teacherController = TeacherControllerCPP::getInstance();
+
 
         // Lógica do sistema
         void addClass(const std::string &name);
