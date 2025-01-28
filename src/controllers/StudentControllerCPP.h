@@ -8,31 +8,32 @@
 // Classe com padrão Singleton
 class StudentControllerCPP 
 {
-private:
+    
+    private:
 
-    // Construtor privado para evitar criação direta de instâncias
-    StudentControllerCPP() {};
+        // Construtor privado para evitar criação direta de instâncias
+        StudentControllerCPP() {};
 
-    // Evita cópia ou atribuição
-    StudentControllerCPP(const StudentControllerCPP&) = delete;
-    StudentControllerCPP& operator=(const StudentControllerCPP&) = delete;
+        // Evita cópia ou atribuição
+        StudentControllerCPP(const StudentControllerCPP&) = delete;
+        StudentControllerCPP& operator=(const StudentControllerCPP&) = delete;
 
-    // map<id,Student>
-    std::map<int, Student> students;
+        // map<id,Student>
+        std::map<int, Student> students;
 
-public:
+    public:
 
-    // Método estático para acessar uma única instância
-    static StudentControllerCPP& getInstance() {
-        static StudentControllerCPP instance; // Instância única criada
-        return instance;
-    }
+        // Método estático para acessar uma única instância
+        static StudentControllerCPP& getInstance() {
+            static StudentControllerCPP instance; // Instância única criada
+            return instance;
+        }
 
-    void addStudent(int studentId, const std::string &name, const std::string &email, const std::string &address);
-    void listStudents();
-    void deleteStudent(int studentId);
-    bool verifyStudentId(int studentId);
-    Student* returnStudent(int studentId);
+        void addStudent(int studentId, const std::string &name, const std::string &email, const std::string &address);
+        void listStudents();
+        void deleteStudent(int studentId);
+        bool verifyStudentId(int studentId);
+        Student* returnStudent(int studentId);
 };
 
 #endif

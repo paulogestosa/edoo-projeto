@@ -1,36 +1,40 @@
 #ifndef TEACHER_CONTROLLER_H
 #define TEACHER_CONTROLLER_H
 
-#include <vector>
+#include <map>
+#include <string>
+#include <iostream>
 #include "src/models/Teacher.h"
-#include "src/models/Class.h"
 
+// Classe com padrão Singleton
 class TeacherControllerCPP
 {
-private:
 
-    // Construtor privado para evitar criação direta de instâncias
-    TeacherControllerCPP() {};
+    private:
 
-    // Evita cópia ou atribuição
-    TeacherControllerCPP(const TeacherControllerCPP&) = delete;
-    TeacherControllerCPP& operator=(const TeacherControllerCPP&) = delete;
+        // Construtor privado para evitar criação direta de instâncias
+        TeacherControllerCPP() {};
 
-    // map<id,Student>
-    std::vector<int> classes;
+        // Evita cópia ou atribuição
+        TeacherControllerCPP(const TeacherControllerCPP&) = delete;
+        TeacherControllerCPP& operator=(const TeacherControllerCPP&) = delete;
 
-public:
+        // map<id,Student>
+        std::map<int, Teacher> teachers;
 
-    // Método estático para acessar uma única instância
-    static TeacherControllerCPP& getInstance() {
-        static TeacherControllerCPP instance; // Instância única criada
-        return instance;
-    }
-    void showClasses(const std::vector<int> classes) const; 
-    void addTeacher(int teacherId, Teacher teacherToAdd);
-    void removeTeacher(int teacherId);
-    void changeTeacherInfo(int teacherId);
-    bool verifyTeacherId(int teacherId); // bool e não void
+    public:
+
+        // Método estático para acessar uma única instância
+        static TeacherControllerCPP& getInstance() {
+            static TeacherControllerCPP instance; // Instância única criada
+            return instance;
+        }
+        
+        void addTeacher(int teacherId, const std::string &name, const std::string &email);
+        void listTeachers();
+        void removeTeacher(int teacherId);
+        bool verifyTeacherId(int teacherId);
+        Teacher* returnTeacher(int teacherId);
 };
 
 #endif

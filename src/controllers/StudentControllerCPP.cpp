@@ -26,6 +26,7 @@ void StudentControllerCPP::addStudent(int studentId, const std::string &name, co
     }
 
     students[studentId] = Student(studentId, name, email, address);
+    std::cout << "Student with ID " << studentId << " created\n";
 }
 
 void StudentControllerCPP::deleteStudent(int studentId)
