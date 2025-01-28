@@ -19,6 +19,11 @@ public:
     void removeTeacher(int teacherId);
     void changeTeacherInfo(int teacherId);
     bool verifyTeacherId(int teacherId); // bool e não void
+
+    int insertTeacher(const char *s);
+    int removeTeacher(const char *s, teacherId);
+    int updateTeacherInfo(const char *s, teacherId);
+    int getTeacher(const char *s, teacherId);
 };
 
 #endif

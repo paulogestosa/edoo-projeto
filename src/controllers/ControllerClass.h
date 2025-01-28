@@ -10,11 +10,11 @@ class ControllerClass
 {
 
 private:
-    sqlite3 *db;                  // conexão com o banco
+    sqlite3 *DB;                  // conexão com o banco
     std::map<int, Class> classes; // Armazena as aulas pelo ID
 
 public:
-    ControllerClass(sqlite3 *database) : db(database) {}
+    ControllerClass(sqlite3 *database) : DB(database) {}
     ~ControllerClass() {}
     void addClass(const std::string &name);
     void addStudentToClass(int classId, int studentId);
@@ -28,6 +28,15 @@ public:
     void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);
 
     void getClassbyId(int id); // boll e não void
+    int insertClass(const char *s, id, name);
+    int insertStudentToClass(const char *s, studentId, classId);
+    int deleteStudentFromClass(const char *s, studentId, classId);
+    int updateTeacherFromClass(const char *s, teacherId, classId);
+    int insertGrades(const char *s, classId, studentId, grade);
+    int updateGradeFromStudent(const char *s, studentId, classId, newGrade);
+    int deleteGradeStudent(const char *s, studentId, classId);
+    int updateAbsencesStudent(const char *s, studentId, classId, numAbssences);
+    int selectClass(const char *s, classId)
 
     // Falta todos os getters
     // Show Classes notes

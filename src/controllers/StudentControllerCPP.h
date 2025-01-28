@@ -12,12 +12,16 @@ private:
     sqlite3 *db;                     // Conexão com o db
 
 public:
-    StudentControllerCPP(sqlite3 *database) : db(database) {}
+    StudentControllerCPP(sqlite3 *DB) : db(DB) {}
     ~StudentControllerCPP() {}
     void addStudent(int studentId, const std::string &name, const std::string &email, const std::string &address);
     void listStudents();
     void deleteStudent(int studentId);
     bool verifyStudentId(int studentId);
+
+    int insertStudent(studentId, name, email, address);
+    int deleteStudentDB(studentId);
+    int getStudent(studentId)
 };
 
 #endif
