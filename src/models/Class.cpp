@@ -44,9 +44,8 @@ void Class::enrollStudent(int studentId) {
 }
 
 void Class::removeStudent(int studentId) {
-    enrolledStudents.erase(std::remove(numbers.begin(), numbers.end(), studentId), numbers.end());
+    enrolledStudents.erase(std::remove(enrolledStudents.begin(), enrolledStudents.end(), studentId), enrolledStudents.end());
 }
-
 
 void Class::setEnrolledTeacher(int teacherId) {
     enrolledTeacher = teacherId;
