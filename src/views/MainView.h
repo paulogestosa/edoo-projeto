@@ -1,19 +1,24 @@
 #ifndef MAINVIEW_H
-#define MAINVIEW_H
+#define MAINVIEW_H 
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map> // para usar como estrutura temporária de "banco de dados"
-#include "src/controllers/ControllerClass.h"
+#include "StudentView.h"
+#include "TeacherView.h"
+#include "ClassView.h"
 
 class MainView {
 
     private:
 
+        StudentView studentView;
+        ClassView classView;
+        TeacherView teacherView;
+
     public:
 
-        void showMainView();
+        void mainScreen();
+        void studentScreen();
+        void classeScreen();
+        void teacherScreen();
 }
 
 #endif

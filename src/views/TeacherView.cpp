@@ -94,6 +94,8 @@ void TeacherView::singleTeacherView() {
                     std::cout << "Opção inválida. Tente novamente.\n";
             }
         }
+
+        return;
     }
 }
 

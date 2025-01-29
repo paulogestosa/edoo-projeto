@@ -19,7 +19,7 @@ class TeacherControllerCPP
         TeacherControllerCPP(const TeacherControllerCPP&) = delete;
         TeacherControllerCPP& operator=(const TeacherControllerCPP&) = delete;
 
-        // map<id,Student>
+        // map<id,Teacher>
         std::map<int, Teacher> teachers;
 
     public:
@@ -37,4 +37,5 @@ class TeacherControllerCPP
         Teacher* returnTeacher(int teacherId);
 };
 
-#endif
+#endif // TEACHER_CONTROLLER_H
+

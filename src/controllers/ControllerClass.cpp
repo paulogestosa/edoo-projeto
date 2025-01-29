@@ -279,3 +279,25 @@ const std::vector<int> ControllerClass::showTeacherClasses(int teacherId) {
 
     return teacherObj->getClasses();
 }
+
+void ControllerClass::showAllClasses() {
+    // Verifica se há classes registradas
+    if (classes.empty()) {
+        std::cout << "Nenhuma classe registrada.\n";
+        return;
+    }
+
+    // Itera sobre o mapa e exibe as informações das classes
+    std::cout << "\n----- Todas as Classes -----\n";
+    for (const auto& entry : classes) {
+        const Class& classe = entry.second;  // Acessa a classe
+        std::cout << "ID da Classe: " << classe.getId() << "\n";
+        std::cout << "Nome da Classe: " << classe.getName() << "\n";
+
+        // Exibe o número de alunos matriculados
+        std::cout << "Número de Alunos Matriculados: " << classe.getEnrolledStudents().size() << "\n";
+
+        // Aqui pode adicionar mais informações à demanda
+        std::cout << "---------------------------\n";
+    }
+}

@@ -106,6 +106,8 @@ void StudentView::singleStudentView() {
                     std::cout << "Opção inválida. Tente novamente.\n";
             }
         }
+
+        return;
     }
 }
 
