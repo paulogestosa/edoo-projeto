@@ -5,11 +5,11 @@ Student::Student(int id, const std::string &name, const std::string &email, cons
     : Person(name, id, email), addressName(addressName) {}
 
 
-const std::string Student::getAddressName() const {
+std::string Student::getAddressName() const {
     return addressName;
 }
 
-const std::vector<int> Student::getClassesJoined() const {
+std::vector<int> Student::getClassesJoined() const {
     return classesJoined;
 }
 

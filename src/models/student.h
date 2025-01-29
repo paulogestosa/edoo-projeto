@@ -15,6 +15,7 @@ private:
 public:
 
     // Construtor
+    Student() = default;
     Student(int id, const std::string &name, const std::string &email, const std::string &addressName);
 
     // Getters (visualização apenas)

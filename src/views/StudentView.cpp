@@ -142,11 +142,7 @@ void StudentView::deleteStudent() {
     int studentId;
     std::cin >> studentId;
 
-    if (controller.studentController.deleteStudent(studentId)) {
-        std::cout << "Estudante com ID " << studentId << " foi removido com sucesso.\n";
-    } else {
-        std::cout << "Aluno com ID " << studentId << " não encontrado.\n";
-    }
+    controller.studentController.deleteStudent(studentId);
 }
 
 // Visualizar todos os estudantes registrados

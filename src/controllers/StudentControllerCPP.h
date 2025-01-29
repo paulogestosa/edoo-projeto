@@ -3,7 +3,7 @@
 
 #include <map>
 #include <string>
-#include "src/models/student.h"
+#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/models/student.h"
 
 // Classe com padrão Singleton
 class StudentControllerCPP 

@@ -19,6 +19,6 @@ class MainView {
         void studentScreen();
         void classeScreen();
         void teacherScreen();
-}
+};
 
 #endif

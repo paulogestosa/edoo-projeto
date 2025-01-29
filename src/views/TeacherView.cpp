@@ -60,7 +60,6 @@ void TeacherView::singleTeacherView() {
         std::cout << "ID: " << teacher->getId() << "\n";
         std::cout << "Nome: " << teacher->getName() << "\n";
         std::cout << "Email: " << teacher->getEmail() << "\n";
-        std::cout << "Endereço: " << teacher->getAddressName() << "\n";
 
         // Perguntar se o usuário deseja ver informações adicionais (disciplinas, etc.)
         while (true) {
@@ -125,11 +124,7 @@ void TeacherView::deleteTeacher() {
     int teacherId;
     std::cin >> teacherId;
 
-    if (controller.teacherController.removeTeacher(teacherId)) {
-        std::cout << "Professor com ID " << teacherId << " foi removido com sucesso.\n";
-    } else {
-        std::cout << "Professor com ID " << teacherId << " não encontrado.\n";
-    }
+    controller.teacherController.removeTeacher(teacherId);
 }
 
 // Visualizar todos os professores registrados

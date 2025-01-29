@@ -21,6 +21,7 @@ class Class {
     public:
     
         // Construtor
+        Class() = default;
         Class(int id, const std::string &name);
 
         // Getters

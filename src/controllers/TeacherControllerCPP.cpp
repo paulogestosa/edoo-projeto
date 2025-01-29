@@ -6,11 +6,11 @@ void TeacherControllerCPP::listTeachers() {
         return;
     }
 
-    for (const auto& [id, teacherObj] : teachers) {
-        std::cout << "ID: " << id << "\n";
-        std::cout << "Nome: " << teacherObj.getName() << "\n";
-        std::cout << "Email: " << teacherObj.getEmail() << "\n";
-        std::cout << "Endereço: " << teacherObj.getAddress() << "\n";
+    // Iterando com um iterador em vez de 'auto' e 'structured binding'
+    for (std::map<int, Teacher>::iterator it = teachers.begin(); it != teachers.end(); ++it) {
+        std::cout << "ID: " << it->first << "\n"; // 'it->first' é o ID
+        std::cout << "Nome: " << it->second.getName() << "\n";
+        std::cout << "Email: " << it->second.getEmail() << "\n";
         std::cout << "-------------------------\n";
     }
 }

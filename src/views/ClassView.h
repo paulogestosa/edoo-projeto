@@ -1,7 +1,7 @@
 #ifndef CLASSVIEW_H
 #define CLASSVIEW_H
 
-#include "src/controllers/ControllerClass.h"
+#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/ControllerClass.h"
 
 class ClassView {
 
@@ -22,6 +22,6 @@ class ClassView {
 
         void setStudentGradeView();
         void setStudentAbsence();
-}
+};
 
 #endif

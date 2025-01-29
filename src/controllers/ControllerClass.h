@@ -2,9 +2,9 @@
 #define CONTROLLERCLASS_H
 
 #include <iostream>
-#include "src/models/Class.h"
-#include "src/controllers/StudentControllerCPP.h"
-#include "src/controllers/TeacherControllerCPP.h"
+#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/models/Class.h"
+#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/StudentControllerCPP.h"
+#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/TeacherControllerCPP.h"
 
 // Classe com padrão Singleton
 class ControllerClass {
@@ -44,9 +44,7 @@ class ControllerClass {
         void addStudentToClass(int classId, int studentId);
         void removeStudentOfClass(int classId, int studentId);
         void assignTeacher(int classId, int teacherId);
-        void addTest(int classId, const std::string &testName);
         void setStudentGrade(int classId, int studentId, int grade);
-        void updateStudentGrade(int classId, int studentId, int newGrade);
         void removeStudentGrade(int classId, int studentId);
         void atributeStudentAbssences(int classId, int studentId, int numAbssences);
         void removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove);

@@ -1,4 +1,5 @@
 #include "Class.h"
+#include <algorithm>
 
 // Construtor
 Class::Class(int id, const std::string &name) : id(id), name(name) {}
@@ -21,10 +22,11 @@ int Class::getEnrolledTeacher() const {
 }
 
 int Class::getGradeByStudent(int studentId) const {
-    if (gradeByStudents.find(studentId) != gradeByStudents.end()) {
-        return gradeByStudents[studentId];
+    auto it = gradeByStudents.find(studentId);
+    if (it != gradeByStudents.end()) {
+        return it->second;  // Retorna a nota do aluno
     }
-    return -1; 
+    return -1;  // Ou outro valor que indique "não encontrado"
 }
 
 int Class::getAbsencesByStudent(int studentId) const {
@@ -44,7 +46,10 @@ void Class::enrollStudent(int studentId) {
 }
 
 void Class::removeStudent(int studentId) {
-    enrolledStudents.erase(std::remove(enrolledStudents.begin(), enrolledStudents.end(), studentId), enrolledStudents.end());
+    enrolledStudents.erase(
+        std::remove(enrolledStudents.begin(), enrolledStudents.end(), studentId), 
+        enrolledStudents.end()
+    );
 }
 
 void Class::setEnrolledTeacher(int teacherId) {

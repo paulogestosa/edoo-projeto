@@ -7,11 +7,12 @@ void StudentControllerCPP::listStudents() {
         return;
     }
 
-    for (const auto& [id, studentObj] : students) {
-        std::cout << "ID: " << id << "\n";
-        std::cout << "Nome: " << studentObj.getName() << "\n";
-        std::cout << "Email: " << studentObj.getEmail() << "\n";
-        std::cout << "Endereço: " << studentObj.getAddress() << "\n";
+    // Iterando com um iterador em vez de 'auto'
+    for (std::map<int, Student>::iterator it = students.begin(); it != students.end(); ++it) {
+        std::cout << "ID: " << it->first << "\n"; // 'it->first' é o ID
+        std::cout << "Nome: " << it->second.getName() << "\n";
+        std::cout << "Email: " << it->second.getEmail() << "\n";
+        std::cout << "Endereço: " << it->second.getAddressName() << "\n";
         std::cout << "-------------------------\n";
     }
 }

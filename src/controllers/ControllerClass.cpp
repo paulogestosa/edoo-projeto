@@ -176,18 +176,6 @@ void ControllerClass::removeStudentAbssences(int classId, int studentId, int num
     // TODO: Atualizar no banco de dados
 }
 
-// Exibe informações de uma classe pelo ID
-void ControllerClass::getClassbyId(int classId) {
-
-    if (classes.find(classId) == classes.end()) {
-
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
-        return;
-    }
-
-    classes[classId].printDetails(); // Criar método de printar detalhes da classe
-}
-
 // Exibe as faltas de todos os alunos em uma classe
 void ControllerClass::showClassAbsences(int classId) {
     if (classes.find(classId) == classes.end()) {
