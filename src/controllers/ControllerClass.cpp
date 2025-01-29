@@ -132,7 +132,17 @@ void ControllerClass::atributeStudentAbssences(int classId, int studentId, int n
         return;
     }
 
+    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
+    StudentControllerCPP studentController;
+    if (!studentController.verifyStudentId(studentId))
+    {
+        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+        return;
+    }
+
     classes[classId].setAbsencesByStudent(studentId, numAbssences);
+    std::cout << numAbssences << " falta(s) atribuída(s) ao estudante " << studentId << " na classe " << classId << ".\n";
+    
     updateAbsencesStudent(const char *s, studentId, classId, numAbssences);
 }
 
@@ -156,8 +166,6 @@ void ControllerClass::removeStudentAbssences(sqlite3 *db, int classId, int stude
 
     classes[classId].setAbsencesByStudent(studentId, classes[classId].getAbsencesByStudent(studentId) - numAbssencesToRemove);
     std::cout << numAbssencesToRemove << " falta(s) removida(s) do estudante " << studentId << " na classe " << classId << ".\n";
-
-
 }
 
 // Exibe informações de uma classe pelo ID

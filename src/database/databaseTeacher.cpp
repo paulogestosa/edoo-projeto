@@ -10,7 +10,7 @@ int createTeacherTable(const char *s)
         CREATE TABLE IF NOT EXISTS Teacher (
              id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            email TEXT NOT NULL,
+            email TEXT NOT NULL
         );
     )";
 
@@ -33,7 +33,7 @@ int createTeacherTable(const char *s)
     return 0;
 }
 
-int insertTeacher(const char *s)
+int insertTeacher(const char *s, int teacherId, const std::string &name, const std::string &email)
 {
     sqlite3 *DB;
     char *errMsg;
@@ -54,12 +54,12 @@ int insertTeacher(const char *s)
     return 0;
 }
 
-int removeTeacher(const char *s, teacherId)
+int removeTeacher(const char *s, int teacherId)
 {
     sqlite3 *DB;
     int exit = sqlite3_open(s, &DB);
 
-    std::string query = "DELETE FROM Teacher WHERE teacher_id = " + std::to_string(teacherId) +
+    std::string query = "DELETE FROM Teacher WHERE id = " + std::to_string(teacherId) +
                         ";";
     char *errMsg = nullptr;
     if (sqlite3_exec(DB, query.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK)
@@ -74,7 +74,7 @@ int removeTeacher(const char *s, teacherId)
     return 0;
 }
 
-int updateTeacherInfo(const char *s, teacherId)
+int updateTeacherInfo(const char *s, int teacherId, const std::string &name, const std::string &email)
 {
     sqlite3 *DB;
     int exit = sqlite3_open(s, &DB);
@@ -93,20 +93,40 @@ int updateTeacherInfo(const char *s, teacherId)
     return 0;
 }
 
-int getTeacher(const char *s, teacherId)
+int getTeacher(const char *s, int teacherId)
 {
     sqlite3 *DB;
     int exit = sqlite3_open(s, &DB);
+    if (exit != SQLITE_OK)
+    {
+        std::cerr << "Error opening database: " << sqlite3_errmsg(DB) << std::endl;
+        return exit;
+    }
 
-    std::string query = "SELECT 1 FROM teachers WHERE id = " + std::to_string(teacherId) + ";";
+    bool exists = false;
+    std::string query = "SELECT 1 FROM Teacher WHERE id = " + std::to_string(teacherId) + ";";
     auto callback = [](void *data, int argc, char **argv, char **colNames) -> int
     {
         *static_cast<bool *>(data) = true;
         return 0;
     };
-    if (sqlite3_exec(DB, query.c_str(), callback, NULL, NULL) != SQLITE_OK)
+
+    char *errMsg = nullptr;
+    exit = sqlite3_exec(DB, query.c_str(), callback, &exists, &errMsg);
+    if (exit != SQLITE_OK)
     {
-        std::cerr << "Error verifying student ID in database: \n";
+        std::cerr << "Error retrieving Teacher info: " << errMsg << '\n';
+        sqlite3_free(errMsg);
     }
-    return 0;
+    else if (exists)
+    {
+        std::cout << "Teacher with ID " << teacherId << " exists.\n";
+    }
+    else
+    {
+        std::cout << "Teacher with ID " << teacherId << " does not exist.\n";
+    }
+
+    sqlite3_close(DB);
+    return exit;
 }

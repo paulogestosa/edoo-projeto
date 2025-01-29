@@ -7,11 +7,11 @@ int createStudentsTable(const char *s)
 
     sqlite3 *DB;
     std::string query = R"(
-        CREATE TABLE IF NOT EXISTS students (
+        CREATE TABLE IF NOT EXISTS Students (
             id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE,
-            adress TEXT NOT NULL
+            address TEXT NOT NULL
         );
     )";
 
@@ -34,14 +34,14 @@ int createStudentsTable(const char *s)
     return 0;
 }
 
-int insertStudent(const char *s, studentId, name, email, adress)
+int insertStudent(const char *s, int studentId, const std::string &name, const std::string email, const std::string address)
 {
     sqlite3 *DB;
     char *errMsg;
 
     int exit = sqlite3_open(s, &DB);
 
-    std::string query = "INSERT INTO students (id, name, email, adress) VALUES (" + std::to_string(studentId) + ", ' " + name + "', '" + email + "','" + adress + "');";
+    std::string query = "INSERT INTO students (id, name, email, address) VALUES (" + std::to_string(studentId) + ", ' " + name + "', '" + email + "','" + address + "');";
 
     if (sqlite3_exec(DB, query.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK)
     {
@@ -55,7 +55,7 @@ int insertStudent(const char *s, studentId, name, email, adress)
     return 0;
 }
 
-int deleteStudentDB(const char *s, studentId)
+int deleteStudentDB(const char *s, int studentId)
 {
     sqlite3 *DB;
     int exit = sqlite3_open(s, &DB);
@@ -74,7 +74,7 @@ int deleteStudentDB(const char *s, studentId)
     return 0;
 }
 
-int getStudent(const char *s, studentId)
+int getStudent(const char *s, int studentId)
 {
     sqlite3 *DB;
     int exit = sqlite3_open(s, &DB);
