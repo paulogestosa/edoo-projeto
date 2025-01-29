@@ -57,6 +57,7 @@ class ControllerClass {
         void showClassGrades(int classId);
         void showStudentGrade(int classId, int studentId);
         const std::vector<int> showStudentClasses(int studentId);
+        const std::vector<int> showTeacherClasses(int teacherId);
 };
 
 #endif

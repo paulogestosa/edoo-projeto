@@ -272,3 +272,10 @@ const std::vector<int> ControllerClass::showStudentClasses(int studentId) {
 
     return studentObj->getClassesJoined();
 }
+
+const std::vector<int> ControllerClass::showTeacherClasses(int teacherId) {
+
+    Teacher* teacherObj = teacherController.returnTeacher(teacherId);
+
+    return teacherObj->getClasses();
+}

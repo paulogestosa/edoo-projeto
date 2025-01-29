@@ -7,10 +7,9 @@ class StudentView {
 
     private:
         
+        ControllerClass& controller = ControllerClass::getInstance();
+        
         int currentId = 1; // Gerador incremental de IDs
-
-        // Valida entradas numéricas
-        int validateIntInput();
 
     public:
 

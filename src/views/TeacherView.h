@@ -11,8 +11,18 @@ class TeacherView {
 
     private:
 
+        ControllerClass& controller = ControllerClass::getInstance();
+        
+        int currentId = 1;
+
     public:
-}
+
+        void mainTeacherView();
+        void singleTeacherView();
+        void addTeacher();
+        void deleteTeacher();
+        void seeTeachers();
+};
 
 
 #endif
