@@ -3,28 +3,31 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
 #include "person.h"
 
 class Student : public Person
 {
 private:
+
     std::string addressName;        
-    std::vector<float> grades;     
-    int absences;                  
-    std::vector<int> classmates;  
+    std::vector<int> classesJoined;     
 
 public:
+
     // Construtor
+    Student() = default;
     Student(int id, const std::string &name, const std::string &email, const std::string &addressName);
 
     // Getters (visualização apenas)
     std::string getAddressName() const;
-    std::vector<float> getGrades() const;
-    int getAbsences() const;
-    std::vector<int> getClassmates() const;
+    std::vector<int> getClassesJoined() const;
 
     // Setter (apenas para endereço)
     void updateAddressName(const std::string &newAddress);
+    void updateClassesJoined(int classeId);
+    void removeClassJoined(int classId);
 };
 
 #endif

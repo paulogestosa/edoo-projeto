@@ -3,7 +3,7 @@
 Teacher::Teacher(const std::string &name, int id, const std::string &email)
     : Person(name, id, email) {}
 
-const std::vector<int> &Teacher::getClasses() const
+const std::vector<int> Teacher::getClasses() const
 {
     return classes;
 }

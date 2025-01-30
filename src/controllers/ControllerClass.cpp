@@ -1,5 +1,42 @@
 #include "ControllerClass.h"
 
+// Confere se a classe está dentro do banco de dados
+bool ControllerClass::checkClass(int classId) {
+
+    if (classes.find(classId) == classes.end()) {
+
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+        return false;
+    }
+
+    return true;
+}
+
+// Confere se o estudante está dentro do banco de dados
+bool ControllerClass::checkStudent(int studentId) {
+
+    if (!studentController.verifyStudentId(studentId)) {
+
+        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+        return false;
+    }
+
+    return true;
+}
+
+// Confere se o estudante está dentro do banco de dados
+bool ControllerClass::checkTeacher(int teacherId) {
+
+    if (!teacherController.verifyTeacherId(teacherId)) {
+
+        std::cerr << "Erro: professor com ID " << teacherId << " não encontrado.\n";
+        return false;
+    }
+
+    return true;
+}
+
+
 // Adiciona uma nova classe
 void ControllerClass::addClass(const std::string &name) {
 
@@ -13,60 +50,53 @@ void ControllerClass::addClass(const std::string &name) {
 // Adiciona um estudante a uma classe pelo ID
 void ControllerClass::addStudentToClass(int classId, int studentId) {
 
-    // Verifica se a classe existe
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
 
     // Adiciona o estudante à classe
     classes[classId].enrollStudent(studentId);
 
+    // Adiciona a classe dentro da aba do estudante
+    Student* studentObj = studentController.returnStudent(studentId);
+    studentObj->updateClassesJoined(classId);
+
     std::cout << "Estudante com ID " << studentId << " adicionado à classe com ID " << classId << ".\n";
 
     // TODO: Atualizar no banco de dados
 }
 
-
 // Remove um estudante de uma classe
 void ControllerClass::removeStudentOfClass(int  classId, int studentId) {
 
-    // Verifica se a classe existe
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
 
     //Exclui o estudante da classe
     classes[classId].removeStudent(studentId);
 
+    Student* studentObj = studentController.returnStudent(studentId);
+    studentObj->removeClassJoined(classId);
+
 }
 
 // Atribui um professor a uma classe
 void ControllerClass::assignTeacher(int classId, int teacherId) {
 
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    TeacherController teacherController_;
-    if (!teacherController_.verifyTeacherId(teacherId)) {
-        std::cerr << "Erro: professor com ID " << teacherId << " não encontrado.\n";
+    if (!checkTeacher(teacherId)) {
         return;
     }
 
@@ -74,21 +104,20 @@ void ControllerClass::assignTeacher(int classId, int teacherId) {
     classes[classId].setEnrolledTeacher(teacherId);
     std::cout << "Professor com ID " << teacherId << " atribuído à classe com ID " << classId << ".\n";
 
+    Teacher* teacherObj = teacherController.returnTeacher(teacherId);
+    teacherObj->addClass(classId);
+
     // TODO: Atualizar no banco de dados
 }
 
-// Define uma nota para um estudante em uma classe
+// Define uma nota para um estudante em uma classe --> pode atualizar
 void ControllerClass::setStudentGrade(int classId, int studentId, int grade) {
 
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
 
@@ -98,39 +127,14 @@ void ControllerClass::setStudentGrade(int classId, int studentId, int grade) {
     // TODO: Atualizar no banco de dados
 }
 
-// Atualiza a nota de um estudante
-void ControllerClass::updateStudentGrade(int classId, int studentId, int newGrade) {
-
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
-        return;
-    }
-
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
-        return;
-    }
-
-    classes[classId].setGradeByStudent(studentId, newGrade);
-    std::cout << "Nota do estudante " << studentId << " na classe " << classId << " atualizada para " << newGrade << ".\n";
-
-    // TODO: Atualizar no banco de dados
-}
-
 // Remove a nota de um estudante
 void ControllerClass::removeStudentGrade(int classId, int studentId) {
 
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
 
@@ -143,15 +147,11 @@ void ControllerClass::removeStudentGrade(int classId, int studentId) {
 // Atribui faltas a um estudante
 void ControllerClass::atributeStudentAbssences(int classId, int studentId, int numAbssences) {
 
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
 
@@ -164,15 +164,11 @@ void ControllerClass::atributeStudentAbssences(int classId, int studentId, int n
 // Remove faltas de um estudante
 void ControllerClass::removeStudentAbssences(int classId, int studentId, int numAbssencesToRemove) {
 
-    if (classes.find(classId) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+    if (!checkClass(classId)) {
         return;
     }
 
-    // Verifica se o estudante existe (simulando acesso ao ControllerStudent)
-    StudentControllerCPP studentController;
-    if (!studentController.verifyStudentId(studentId)) {
-        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+    if (!checkStudent(studentId)) {
         return;
     }
     
@@ -182,12 +178,116 @@ void ControllerClass::removeStudentAbssences(int classId, int studentId, int num
     // TODO: Atualizar no banco de dados
 }
 
-// Exibe informações de uma classe pelo ID
-void ControllerClass::getClassbyId(int id) {
-    if (classes.find(id) == classes.end()) {
-        std::cerr << "Erro: Classe com ID " << id << " não encontrada.\n";
+// Exibe as faltas de todos os alunos em uma classe
+void ControllerClass::showClassAbsences(int classId) {
+    if (classes.find(classId) == classes.end()) {
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
         return;
     }
 
-    classes[id].printDetails(); // Criar método de printar detalhes da classe
+    std::cout << "Faltas dos alunos na classe com ID " << classId << ":\n";
+
+    // Obtém os alunos matriculados e exibe as faltas
+    const auto& students = classes[classId].getEnrolledStudents();
+    if (students.empty()) {
+        std::cout << "Nenhum estudante está matriculado nesta classe.\n";
+        return;
+    }
+
+    for (int studentId : students) {
+        int absences = classes[classId].getAbsencesByStudent(studentId);
+        std::cout << "Estudante ID: " << studentId << ", Faltas: " << absences << "\n";
+    }
+}
+
+// Exibe as faltas de um estudante específico em uma classe
+void ControllerClass::showStudentAbsences(int classId, int studentId) {
+    if (classes.find(classId) == classes.end()) {
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+        return;
+    }
+
+    if (!studentController.verifyStudentId(studentId)) {
+        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+        return;
+    }
+
+    int absences = classes[classId].getAbsencesByStudent(studentId);
+    std::cout << "Estudante ID: " << studentId << " tem " << absences << " faltas na classe com ID " << classId << ".\n";
+}
+
+// Exibe as notas de todos os alunos em uma classe
+void ControllerClass::showClassGrades(int classId) {
+    if (classes.find(classId) == classes.end()) {
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+        return;
+    }
+
+    std::cout << "Notas dos alunos na classe com ID " << classId << ":\n";
+
+    // Obtém os alunos matriculados e exibe as notas
+    const auto& students = classes[classId].getEnrolledStudents();
+    if (students.empty()) {
+        std::cout << "Nenhum estudante está matriculado nesta classe.\n";
+        return;
+    }
+
+    for (int studentId : students) {
+        int grade = classes[classId].getGradeByStudent(studentId);
+        std::cout << "Estudante ID: " << studentId << ", Nota: " << grade << "\n";
+    }
+}
+
+// Exibe a nota de um estudante específico em uma classe
+void ControllerClass::showStudentGrade(int classId, int studentId) {
+    if (classes.find(classId) == classes.end()) {
+        std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
+        return;
+    }
+
+    if (!studentController.verifyStudentId(studentId)) {
+        std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
+        return;
+    }
+
+    int grade = classes[classId].getGradeByStudent(studentId);
+    
+    std::cout << "Estudante ID: " << studentId << " tem nota " << grade << " na classe com ID " << classId << ".\n";
+
+}
+
+const std::vector<int> ControllerClass::showStudentClasses(int studentId) {
+    
+    Student* studentObj = studentController.returnStudent(studentId);
+
+    return studentObj->getClassesJoined();
+}
+
+const std::vector<int> ControllerClass::showTeacherClasses(int teacherId) {
+
+    Teacher* teacherObj = teacherController.returnTeacher(teacherId);
+
+    return teacherObj->getClasses();
+}
+
+void ControllerClass::showAllClasses() {
+    // Verifica se há classes registradas
+    if (classes.empty()) {
+        std::cout << "Nenhuma classe registrada.\n";
+        return;
+    }
+
+    // Itera sobre o mapa e exibe as informações das classes
+    std::cout << "\n----- Todas as Classes -----\n";
+    for (const auto& entry : classes) {
+        const Class& classe = entry.second;  // Acessa a classe
+        std::cout << "ID da Classe: " << classe.getId() << "\n";
+        std::cout << "Nome da Classe: " << classe.getName() << "\n";
+
+        // Exibe o número de alunos matriculados
+        std::cout << "Número de Alunos Matriculados: " << classe.getEnrolledStudents().size() << "\n";
+
+        // Aqui pode adicionar mais informações à demanda
+        std::cout << "---------------------------\n";
+    }
 }

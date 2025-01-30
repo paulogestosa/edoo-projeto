@@ -11,9 +11,11 @@ private:
     std::vector<int> classes;
 
 public:
+
+    Teacher() = default;
     Teacher(const std::string &name, int id, const std::string &email);
 
-    const std::vector<int> &getClasses() const;
+    const std::vector<int> getClasses() const;
 
     void addClass(int classId);
 };

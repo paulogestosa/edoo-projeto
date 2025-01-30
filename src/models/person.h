@@ -11,6 +11,7 @@ private:
 
 public:
     // Construtor
+    Person() = default;
     Person(const std::string &name, int id, const std::string &email);
 
     // Getters
