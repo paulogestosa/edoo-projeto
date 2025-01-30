@@ -1,4 +1,5 @@
 #include "TeacherControllerCPP.h"
+// #include "database.h"
 
 void TeacherControllerCPP::listTeachers() {
     if (teachers.empty()) {
@@ -25,6 +26,8 @@ void TeacherControllerCPP::addTeacher(int teacherId, const std::string &name, co
 
     teachers[teacherId] = Teacher(name, teacherId, email);
     std::cout << "Teacher with ID " << teacherId << " created\n";
+        // insertTeacher(dbName,teacherId,name,email);
+
 
 }
 
@@ -34,6 +37,8 @@ void TeacherControllerCPP::removeTeacher(int teacherId) {
 
         teachers.erase(teacherId);
         std::cout << "Teacher with ID " << teacherId << " deleted.\n";
+        // removeTeacher(dbName, int teacherId);
+
         return;
     }
 
@@ -52,6 +57,8 @@ bool TeacherControllerCPP::verifyTeacherId(int teacherId)
 Teacher* TeacherControllerCPP::returnTeacher(int teacherId) {
     if (verifyTeacherId(teacherId)) {
         return &teachers[teacherId];
+        // readTeacher(dbName, teacherId);
+
     }
 
     return nullptr; // Indica que o professor não foi encontrado
