@@ -1,4 +1,5 @@
 #include "ControllerClass.h"
+// const char *dbName = "class_database.db";
 
 // Confere se a classe está dentro do banco de dados
 bool ControllerClass::checkClass(int classId) {
@@ -8,6 +9,7 @@ bool ControllerClass::checkClass(int classId) {
         std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
         return false;
     }
+    // checkClassInDatabase(dbName, classId);
 
     return true;
 }
@@ -20,6 +22,8 @@ bool ControllerClass::checkStudent(int studentId) {
         std::cerr << "Erro: Estudante com ID " << studentId << " não encontrado.\n";
         return false;
     }
+// checkStudentInDatabase(dbName, studentId);
+
 
     return true;
 }
@@ -44,7 +48,7 @@ void ControllerClass::addClass(const std::string &name) {
     classes[Id] = Class(Id, name);
     std::cout << "Classe '" << name << "' adicionada com ID " << Id << ".\n";
 
-    // TODO: Adicionar lógica para salvar no banco de dados
+    // insertClass(dbName, name);
 }
 
 // Adiciona um estudante a uma classe pelo ID
@@ -60,6 +64,7 @@ void ControllerClass::addStudentToClass(int classId, int studentId) {
 
     // Adiciona o estudante à classe
     classes[classId].enrollStudent(studentId);
+    // insertStudentToClass(dbName, studentId, classId);
 
     // Adiciona a classe dentro da aba do estudante
     Student* studentObj = studentController.returnStudent(studentId);
@@ -83,6 +88,7 @@ void ControllerClass::removeStudentOfClass(int  classId, int studentId) {
 
     //Exclui o estudante da classe
     classes[classId].removeStudent(studentId);
+    // deleteStudentFromClass(dbName, studentId, classId);
 
     Student* studentObj = studentController.returnStudent(studentId);
     studentObj->removeClassJoined(classId);
@@ -102,12 +108,13 @@ void ControllerClass::assignTeacher(int classId, int teacherId) {
 
     // Adiciona o professor a classe
     classes[classId].setEnrolledTeacher(teacherId);
+    // insertTeacherFromClass(dbName, teacherId, classId, "NomeProfessor");
+
     std::cout << "Professor com ID " << teacherId << " atribuído à classe com ID " << classId << ".\n";
 
     Teacher* teacherObj = teacherController.returnTeacher(teacherId);
     teacherObj->addClass(classId);
 
-    // TODO: Atualizar no banco de dados
 }
 
 // Define uma nota para um estudante em uma classe --> pode atualizar
@@ -124,7 +131,7 @@ void ControllerClass::setStudentGrade(int classId, int studentId, int grade) {
     classes[classId].setGradeByStudent(studentId, grade);
     std::cout << "Nota " << grade << " atribuída ao estudante " << studentId << " na classe " << classId << ".\n";
 
-    // TODO: Atualizar no banco de dados
+    // insertGrades(dbName, classId, studentId, grade);
 }
 
 // Remove a nota de um estudante
@@ -139,9 +146,10 @@ void ControllerClass::removeStudentGrade(int classId, int studentId) {
     }
 
     classes[classId].setGradeByStudent(studentId, -1);
+    // deleteGradeStudent(dbName, studentId, classId);
+
     std::cout << "Nota do estudante " << studentId << " removida da classe " << classId << ".\n";
 
-    // TODO: Atualizar no banco de dados
 }
 
 // Atribui faltas a um estudante
@@ -156,9 +164,10 @@ void ControllerClass::atributeStudentAbssences(int classId, int studentId, int n
     }
 
     classes[classId].setAbsencesByStudent(studentId, numAbssences);
+        // insertAbsencesStudent(dbName, studentId, classId, numAbssences);
+
     std::cout << numAbssences << " falta(s) atribuída(s) ao estudante " << studentId << " na classe " << classId << ".\n";
 
-    // TODO: Atualizar no banco de dados
 }
 
 // Remove faltas de um estudante
@@ -173,9 +182,10 @@ void ControllerClass::removeStudentAbssences(int classId, int studentId, int num
     }
     
     classes[classId].setAbsencesByStudent(studentId, classes[classId].getAbsencesByStudent(studentId) - numAbssencesToRemove);
+        // deleteStudentAbsences(dbName, studentId, classId, numAbssencesToRemove);
+
     std::cout << numAbssencesToRemove << " falta(s) removida(s) do estudante " << studentId << " na classe " << classId << ".\n";
 
-    // TODO: Atualizar no banco de dados
 }
 
 // Exibe as faltas de todos os alunos em uma classe
@@ -184,6 +194,7 @@ void ControllerClass::showClassAbsences(int classId) {
         std::cerr << "Erro: Classe com ID " << classId << " não encontrada.\n";
         return;
     }
+    // readClassAbsences(dbName, classId);
 
     std::cout << "Faltas dos alunos na classe com ID " << classId << ":\n";
 
@@ -213,6 +224,8 @@ void ControllerClass::showStudentAbsences(int classId, int studentId) {
     }
 
     int absences = classes[classId].getAbsencesByStudent(studentId);
+        // readStudentAbsences(dbName, classId, studentId);
+
     std::cout << "Estudante ID: " << studentId << " tem " << absences << " faltas na classe com ID " << classId << ".\n";
 }
 
@@ -227,6 +240,8 @@ void ControllerClass::showClassGrades(int classId) {
 
     // Obtém os alunos matriculados e exibe as notas
     const auto& students = classes[classId].getEnrolledStudents();
+        // readClassGrades(dbName, classId);
+
     if (students.empty()) {
         std::cout << "Nenhum estudante está matriculado nesta classe.\n";
         return;
@@ -251,7 +266,8 @@ void ControllerClass::showStudentGrade(int classId, int studentId) {
     }
 
     int grade = classes[classId].getGradeByStudent(studentId);
-    
+    // readStudentGrade(dbName, studentId);
+
     std::cout << "Estudante ID: " << studentId << " tem nota " << grade << " na classe com ID " << classId << ".\n";
 
 }
@@ -259,6 +275,7 @@ void ControllerClass::showStudentGrade(int classId, int studentId) {
 const std::vector<int> ControllerClass::showStudentClasses(int studentId) {
     
     Student* studentObj = studentController.returnStudent(studentId);
+    // readStudentClasses(dbName, studentId);
 
     return studentObj->getClassesJoined();
 }
@@ -266,12 +283,15 @@ const std::vector<int> ControllerClass::showStudentClasses(int studentId) {
 const std::vector<int> ControllerClass::showTeacherClasses(int teacherId) {
 
     Teacher* teacherObj = teacherController.returnTeacher(teacherId);
+    // readTeacherClasses(dbName, teacherId);
 
     return teacherObj->getClasses();
 }
 
 void ControllerClass::showAllClasses() {
     // Verifica se há classes registradas
+    // readAllClasses(dbName);
+
     if (classes.empty()) {
         std::cout << "Nenhuma classe registrada.\n";
         return;
