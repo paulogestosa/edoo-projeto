@@ -1,5 +1,8 @@
 #include "StudentControllerCPP.h"
 #include <iostream>
+//#include "database.h"
+
+// const char *dbName = "student_database.db";
 
 void StudentControllerCPP::listStudents() {
     if (students.empty()) {
@@ -15,6 +18,8 @@ void StudentControllerCPP::listStudents() {
         std::cout << "Endereço: " << it->second.getAddressName() << "\n";
         std::cout << "-------------------------\n";
     }
+    // readStudentsDB(dbName);
+
 }
 
 
@@ -28,6 +33,8 @@ void StudentControllerCPP::addStudent(int studentId, const std::string &name, co
 
     students[studentId] = Student(studentId, name, email, address);
     std::cout << "Student with ID " << studentId << " created\n";
+    // insertStudent(dbName, name, email, address);
+
 }
 
 void StudentControllerCPP::deleteStudent(int studentId)
@@ -36,6 +43,8 @@ void StudentControllerCPP::deleteStudent(int studentId)
 
         students.erase(studentId);
         std::cout << "Student with ID " << studentId << " deleted.\n";
+        // deleteStudentDB(dbName, studentId);
+
         return;
     }
 
