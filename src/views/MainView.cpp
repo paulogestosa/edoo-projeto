@@ -1,4 +1,4 @@
-#include "MainView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/MainView.h"
 #include <iostream>
 
 void MainView::mainScreen() {

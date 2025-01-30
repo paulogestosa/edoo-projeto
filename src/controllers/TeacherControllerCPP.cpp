@@ -1,5 +1,6 @@
-#include "TeacherControllerCPP.h"
-
+#include "/home/beatrizanjos/edoo-projeto-1/src/controllers/TeacherControllerCPP.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/database/database.h"
+// const char *dbName = "teacher_database.db";
 void TeacherControllerCPP::listTeachers() {
     if (teachers.empty()) {
         std::cout << "Nenhum professor registrado.\n";
@@ -25,6 +26,7 @@ void TeacherControllerCPP::addTeacher(int teacherId, const std::string &name, co
 
     teachers[teacherId] = Teacher(name, teacherId, email);
     std::cout << "Teacher with ID " << teacherId << " created\n";
+    // insertTeacher(dbName,teacherId,name,email);
 
 }
 
@@ -34,6 +36,7 @@ void TeacherControllerCPP::removeTeacher(int teacherId) {
 
         teachers.erase(teacherId);
         std::cout << "Teacher with ID " << teacherId << " deleted.\n";
+        // removeTeacher(dbName, int teacherId);
         return;
     }
 
@@ -51,6 +54,7 @@ bool TeacherControllerCPP::verifyTeacherId(int teacherId)
 
 Teacher* TeacherControllerCPP::returnTeacher(int teacherId) {
     if (verifyTeacherId(teacherId)) {
+        readTeacher(dbName, teacherId);
         return &teachers[teacherId];
     }
 

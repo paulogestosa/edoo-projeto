@@ -1,9 +1,9 @@
 #ifndef MAINVIEW_H
 #define MAINVIEW_H 
 
-#include "StudentView.h"
-#include "TeacherView.h"
-#include "ClassView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/StudentView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/TeacherView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/ClassView.h"
 
 class MainView {
 

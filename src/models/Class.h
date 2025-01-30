@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "Student.h"
-#include "Teacher.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/models/Student.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/models/Teacher.h"
 
 class Class {
 

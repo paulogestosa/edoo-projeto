@@ -1,4 +1,4 @@
-#include "Teacher.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/models/Teacher.h"
 
 Teacher::Teacher(const std::string &name, int id, const std::string &email)
     : Person(name, id, email) {}

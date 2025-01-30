@@ -1,4 +1,4 @@
-#include "ClassView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/ClassView.h"
 #include <iostream>
 
 void ClassView::mainClassView() {

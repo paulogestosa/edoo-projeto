@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "Person.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/models/Person.h"
 
 class Teacher : public Person
 {

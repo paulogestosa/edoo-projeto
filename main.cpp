@@ -1,4 +1,4 @@
-#include "src/views/MainView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/MainView.h"
 
 int main() {
     // Cria a instância da MainView

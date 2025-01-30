@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <map> // para usar como estrutura temporária de "banco de dados"
-#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/ControllerClass.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/controllers/ControllerClass.h"
 
 class TeacherView {
 

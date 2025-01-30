@@ -1,7 +1,7 @@
 #ifndef STUDENTVIEW_H
 #define STUDENTVIEW_H
 
-#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/ControllerClass.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/controllers/ControllerClass.h"
 
 class StudentView {
 

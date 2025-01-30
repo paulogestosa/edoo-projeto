@@ -3,9 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iostream>
-#include "person.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/models/Person.h"
 
 class Student : public Person
 {
@@ -27,7 +25,6 @@ public:
     // Setter (apenas para endereço)
     void updateAddressName(const std::string &newAddress);
     void updateClassesJoined(int classeId);
-    void removeClassJoined(int classId);
 };
 
 #endif

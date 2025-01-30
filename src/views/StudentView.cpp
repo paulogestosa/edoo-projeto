@@ -1,4 +1,4 @@
-#include "StudentView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/StudentView.h"
 
 // Menu principal
 void StudentView::mainStudentView() {

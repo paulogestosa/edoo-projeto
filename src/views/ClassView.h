@@ -1,7 +1,7 @@
 #ifndef CLASSVIEW_H
 #define CLASSVIEW_H
 
-#include "c:\Users\PICHAU\OneDrive\Documentos\edoo-projeto\src/controllers/ControllerClass.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/controllers/ControllerClass.h"
 
 class ClassView {
 

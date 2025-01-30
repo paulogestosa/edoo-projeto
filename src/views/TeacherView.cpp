@@ -1,4 +1,4 @@
-#include "TeacherView.h"
+#include "/home/beatrizanjos/edoo-projeto-1/src/views/TeacherView.h"
 
 // Menu principal
 void TeacherView::mainTeacherView() {
