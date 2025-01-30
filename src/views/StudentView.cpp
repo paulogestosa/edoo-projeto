@@ -116,6 +116,7 @@ void StudentView::singleStudentView() {
 void StudentView::addStudent() {
 
     std::cout << "Digite o nome do estudante: ";
+    std::cin.ignore(); // Ignora o newline pendente no buffer
     std::string name;
     std::getline(std::cin, name);
 

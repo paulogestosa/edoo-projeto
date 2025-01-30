@@ -11,7 +11,9 @@ void ClassView::mainClassView() {
         std::cout << "5. Ver Faltas dos Estudantes de uma turma específica\n";
         std::cout << "6. Ver Notas dos Estudantes de uma turma específica\n";
         std::cout << "7. Ver Todas as Turmas\n";
-        std::cout << "8. Sair\n";
+        std::cout << "8. Atribua faltas a um aluno\n";
+        std::cout << "9. Atribua notas a um aluno\n";
+        std::cout << "10. Sair\n";
         std::cout << "Escolha uma opção: ";
 
         int option;
@@ -40,6 +42,12 @@ void ClassView::mainClassView() {
                 seeClasses();
                 break;
             case 8:
+                setStudentAbsence();
+                break;
+            case 9:
+                setStudentGradeView();
+                break;
+            case 10:
                 std::cout << "Saindo do sistema...\n";
                 return;
             default:
@@ -51,7 +59,9 @@ void ClassView::mainClassView() {
 void ClassView::addClass() {
     std::string className;
     std::cout << "Digite o nome da turma: ";
-    std::cin >> className;
+    std::cin.ignore(); // Evita problemas com entradas anteriores
+    std::getline(std::cin, className); // Agora captura nomes compostos corretamente
+
     controller.addClass(className);
     std::cout << "Turma adicionada com sucesso!\n";
 }

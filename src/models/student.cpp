@@ -20,3 +20,14 @@ void Student::updateAddressName(const std::string &newAddress) {
 void Student::updateClassesJoined(int classId) {
     classesJoined.push_back(classId);
 }
+
+void Student::removeClassJoined(int classId) {
+    auto it = std::remove(classesJoined.begin(), classesJoined.end(), classId);
+    
+    if (it != classesJoined.end()) {
+        classesJoined.erase(it, classesJoined.end());
+        std::cout << "Classe " << classId << " removida do estudante com sucesso!\n";
+    } else {
+        std::cout << "Classe " << classId << " não encontrada para o estudante.\n";
+    }
+}

@@ -84,7 +84,8 @@ void ControllerClass::removeStudentOfClass(int  classId, int studentId) {
     //Exclui o estudante da classe
     classes[classId].removeStudent(studentId);
 
-    //Adicionar uma parte para excluir a classe de dentro do estudante classe -> Student
+    Student* studentObj = studentController.returnStudent(studentId);
+    studentObj->removeClassJoined(classId);
 
 }
 
@@ -103,7 +104,8 @@ void ControllerClass::assignTeacher(int classId, int teacherId) {
     classes[classId].setEnrolledTeacher(teacherId);
     std::cout << "Professor com ID " << teacherId << " atribuído à classe com ID " << classId << ".\n";
 
-    //Adicionar no model do professor 
+    Teacher* teacherObj = teacherController.returnTeacher(teacherId);
+    teacherObj->addClass(classId);
 
     // TODO: Atualizar no banco de dados
 }
