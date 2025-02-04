@@ -18,6 +18,9 @@ O projeto é um sistema de informação voltado para o gerenciamento de turmas a
 > Banco de Dados e Persistência: Armazenamento das informações, Integração parcial do banco de dados com o sistema (em desenvolvimento);
 
 # Imagens
+![image](https://github.com/user-attachments/assets/24cdaf5b-76bf-4b7b-9557-a09a7057af85)
+![image](https://github.com/user-attachments/assets/508b512b-74d9-46e3-939f-8a8d8bbc36e9)
+![image](https://github.com/user-attachments/assets/1876c9c8-e7a3-4faa-928f-73f441b0ad99)
 
 # Link para o código : https://github.com/paulogestosa/edoo-projeto
 # Link para o relatório : https://docs.google.com/document/d/1fWC31gerb46j4e1b9gGwMg-iaBhwQ--3-br9K4BcIOM/edit?usp=sharing
