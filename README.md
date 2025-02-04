@@ -24,4 +24,7 @@ O projeto é um sistema de informação voltado para o gerenciamento de turmas a
 
 # Link para o código : https://github.com/paulogestosa/edoo-projeto
 # Link para o relatório : https://docs.google.com/document/d/1fWC31gerb46j4e1b9gGwMg-iaBhwQ--3-br9K4BcIOM/edit?usp=sharing
-# Link para o  vídeo : _____________________
+# Link para o  vídeo : https://youtu.be/2TSETKwWt7A
+
+# Como rodar?
+g++ -Wall -Wextra -g3 -std=c++11 main.cpp 
